@@ -18,25 +18,13 @@
  */
 package network.saikoro.core.bungee.listener
 
-import com.maxmind.db.CHMCache
-import com.maxmind.geoip2.DatabaseReader
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.TextReplacementConfig
-import net.kyori.adventure.text.format.NamedTextColor
-import net.kyori.adventure.text.serializer.bungeecord.BungeeComponentSerializer
-import net.md_5.bungee.api.event.PreLoginEvent
 import net.md_5.bungee.api.event.TabCompleteResponseEvent
 import net.md_5.bungee.api.plugin.Listener
 import net.md_5.bungee.event.EventHandler
-import net.md_5.bungee.protocol.ProtocolConstants
 import network.saikoro.core.bungee.CorePlugin
-import network.saikoro.core.common.Constants
-import java.io.File
-import java.net.InetSocketAddress
-import java.util.*
 
 class CoreListener(private val plugin: CorePlugin) : Listener {
-    private val geoipDb = DatabaseReader.Builder(File(plugin.dataFolder, "GeoLite2-Country.mmdb"))
+    /*private val geoipDb = DatabaseReader.Builder(File(plugin.dataFolder, "GeoLite2-Country.mmdb"))
         .withCache(CHMCache()).build()
 
     @EventHandler
@@ -145,7 +133,7 @@ class CoreListener(private val plugin: CorePlugin) : Listener {
 
                 null // WTF: kotlin infers Void! for this function
             }
-    }
+    }*/
 
     @EventHandler
     fun on(ev: TabCompleteResponseEvent) {

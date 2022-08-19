@@ -27,7 +27,7 @@ import network.saikoro.core.common.Constants
 
 class ReloadMOTDCommand(private val plugin: CorePlugin) : Command("motd_reload", Constants.Permissions.MOTDReload) {
     override fun execute(sender: CommandSender, args: Array<out String>) {
-        plugin.reloadMOTDFiles()
+        // plugin.reloadMOTDFiles()
         plugin.adventure.sender(sender).sendMessage(
             Constants.ADVENTURE_PREFIX
                 .append(Component.text("Konfigurace MOTD byla uspesne prenactena.", NamedTextColor.GREEN))

@@ -41,11 +41,12 @@ abstract class BaseReportCommand(
     }
 
     protected fun getDiscordMessageLinkURL(it: ReadonlyMessage): String {
-        return "https://discord.com/channels/824022859126931496/${it.channelId}/${it.id}"
+        return "https://discord.com/channels/938512313869283328/${it.channelId}/${it.id}"
     }
 
 
     companion object {
+
         val ADVENTURE_REPORTS_PREFIX = Component.text("[", NamedTextColor.DARK_GRAY)
             .append(Component.text("Reports", NamedTextColor.RED))
             .append(Component.text("]"))

@@ -77,7 +77,7 @@ class ReportCommand(plugin: CorePlugin) : BaseReportCommand(plugin, "report", Co
                     .setAuthor(
                         WebhookEmbed.EmbedAuthor(
                             "${sender.name} (ze serveru ${sender.server.info.name})",
-                            "", // TODO: render player skin
+                            "https://visage.surgeplay.com/bust/512/${sender.uniqueId}", // TODO: Replace with our skin service whenever that's implemented
                             null
                         )
                     )
@@ -90,7 +90,7 @@ class ReportCommand(plugin: CorePlugin) : BaseReportCommand(plugin, "report", Co
             ),
             false
         ).thenAcceptAsync {
-            plugin.adventure.permission("network.saikoro.core.notify_reports")
+            plugin.adventure.permission(Constants.Permissions.NotifyReports)
                 .sendMessage(
                     ADVENTURE_REPORTS_PREFIX
                         .append(Component.text(reportPlayer.name, NamedTextColor.RED))
@@ -124,7 +124,7 @@ class ReportCommand(plugin: CorePlugin) : BaseReportCommand(plugin, "report", Co
                             )
                                 .append(
                                     Component.text("Discordu", TextColor.color(0x7289da))
-                                        .clickEvent(ClickEvent.openUrl("")) // TODO: Discord
+                                        .clickEvent(ClickEvent.openUrl("https://link.saikoro.eu/discord"))
                                 )
                                 .append(Component.text("."))
                         )

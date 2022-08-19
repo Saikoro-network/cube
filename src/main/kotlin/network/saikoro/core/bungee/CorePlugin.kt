@@ -23,38 +23,25 @@ import club.minnced.discord.webhook.WebhookClient
 import club.minnced.discord.webhook.WebhookClientBuilder
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.serializer.bungeecord.BungeeComponentSerializer
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import net.luckperms.api.LuckPerms
 import net.luckperms.api.LuckPermsProvider
-import net.md_5.bungee.api.ChatColor
 import net.md_5.bungee.api.ServerPing
 import net.md_5.bungee.api.chat.BaseComponent
 import net.md_5.bungee.api.connection.ProxiedPlayer
 import net.md_5.bungee.api.event.PluginMessageEvent
-import net.md_5.bungee.api.event.ProxyPingEvent
 import net.md_5.bungee.api.plugin.Listener
 import net.md_5.bungee.api.plugin.Plugin
 import net.md_5.bungee.config.Configuration
 import net.md_5.bungee.config.ConfigurationProvider
 import net.md_5.bungee.config.YamlConfiguration
 import net.md_5.bungee.event.EventHandler
-import net.md_5.bungee.protocol.ProtocolConstants
 import network.saikoro.core.bungee.annoyances.AnnoyanceManager
 import network.saikoro.core.bungee.commands.*
 import network.saikoro.core.bungee.listener.CoreListener
 import network.saikoro.core.common.Constants
-import network.saikoro.core.common.db.DatabaseGetter
-import network.saikoro.core.common.db.models.PlayerStatistic
 import org.ktorm.database.Database
-import org.ktorm.dsl.delete
-import org.ktorm.dsl.insert
-import org.ktorm.dsl.less
 import java.io.File
 import java.nio.file.Files
-import java.time.LocalDateTime
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 @Suppress("unused")
 class CorePlugin : Plugin(), Listener {
@@ -94,9 +81,8 @@ class CorePlugin : Plugin(), Listener {
             ::GlobalAlertCommand,
             ::LocalAlertCommand,
             ::ServerSpecificAlertCommand,
-            ::ReloadMOTDCommand,
+            // ::ReloadMOTDCommand, // MOTDs are currently handled by a different plugin
             ::ReportBugCommand,
-            ::ReportBugDeprecationNoticeCommand,
             ::ReportCommand,
             ::AnnoyancesCommand
         ).forEach {
@@ -114,7 +100,7 @@ class CorePlugin : Plugin(), Listener {
         val f = ensureFile(dataFolder, "config.yml", "bungee_config.yml")
         config = ConfigurationProvider.getProvider(YamlConfiguration::class.java).load(f)
 
-        whitelistedCountries = config.getStringList("geoip.allowed_countries")
+        /*whitelistedCountries = config.getStringList("geoip.allowed_countries")
         whitelistedAddresses = config.getStringList("geoip.allowed_ips")
 
         disconnectGeoipBlacklistedPrecompiled = LegacyComponentSerializer.legacyAmpersand()
@@ -123,7 +109,7 @@ class CorePlugin : Plugin(), Listener {
             .deserialize(config.getString("geoip.disconnect_unknown") ?: "Unknown GeoIP location")
 
 
-        reloadMOTDFiles()
+        reloadMOTDFiles()*/
 
         discordBugHookClient = WebhookClientBuilder(config.getString("reports.bug_webhook_url"))
             .build()
@@ -131,7 +117,7 @@ class CorePlugin : Plugin(), Listener {
         discordReportHookClient = WebhookClientBuilder(config.getString("reports.webhook_url"))
             .build()
 
-        db = DatabaseGetter.getInstance(
+        /*db = DatabaseGetter.getInstance(
             config.getInt("db.max_pool_size", 10),
             config.getString("db.host"),
             config.getString("db.port") ?: config.getInt("db.port", 3306).toString(),
@@ -156,7 +142,7 @@ class CorePlugin : Plugin(), Listener {
                     it.timestamp less ts.minusMonths(1L)
                 }
             }
-        }, 0, 1, TimeUnit.SECONDS)
+        }, 0, 1, TimeUnit.SECONDS)*/
 
         annoyances.enableDefaultAnnoyances()
 
@@ -185,21 +171,21 @@ class CorePlugin : Plugin(), Listener {
         }
     }
 
-    @EventHandler
+    /*@EventHandler
     fun on(ev: ProxyPingEvent) {
         ev.response.apply {
             players.sample = precompiledPlayerList
             descriptionComponent = if (ev.connection.version >= ProtocolConstants.MINECRAFT_1_16) precompiledMotdText
             else precompiledMotdTextPre116
         }
-    }
+    }*/
 
     @Suppress("UNUSED_PARAMETER")
     private fun handlePluginMessage(msg: ByteArray) {
         // No-op: might be handled soon.
     }
 
-    fun reloadMOTDFiles() {
+    /*fun reloadMOTDFiles() {
         val motdFile = ensureFile(dataFolder, "motd.txt")
         val playerListFile = ensureFile(dataFolder, "player_list.txt")
 
@@ -218,7 +204,7 @@ class CorePlugin : Plugin(), Listener {
                 )
             }.toList().toTypedArray()
         }
-    }
+    }*/
 
     private fun ensureFile(path: File, child: String, sourceFileName: String = child): File {
         val f = File(path, child)

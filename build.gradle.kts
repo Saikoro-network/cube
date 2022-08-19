@@ -24,12 +24,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import kotlin.streams.toList
 
 plugins {
-    kotlin("jvm") version ("1.5.31")
+    kotlin("jvm") version ("1.7.10")
     id("com.github.johnrengelman.shadow") version ("5.2.0")
 }
 
 group = "network.saikoro"
-version = "1.3.4"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -45,20 +45,20 @@ repositories {
 dependencies {
     //components.all(KotlinAlignment::class.java)
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
-    compileOnly("net.md-5:bungeecord-api:1.17-R0.1-SNAPSHOT")
-    compileOnly("net.luckperms:api:5.3")
+    compileOnly("net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT")
+    compileOnly("net.luckperms:api:5.4")
 
     shadow(kotlin("stdlib-jdk8"))
     shadow(kotlin("reflect"))
-    shadow("com.zaxxer:HikariCP:5.0.0")
-    shadow("org.ktorm:ktorm-core:3.4.1")
-    shadow("com.maxmind.geoip2:geoip2:2.15.0")
+    shadow("com.zaxxer:HikariCP:5.0.1")
+    shadow("org.ktorm:ktorm-core:3.5.0")
+    shadow("com.maxmind.geoip2:geoip2:3.0.1")
 
-    shadow("net.kyori:adventure-api:4.9.3")
-    shadow("net.kyori:adventure-platform-bungeecord:4.0.0")
+    shadow("net.kyori:adventure-api:4.11.0")
+    shadow("net.kyori:adventure-platform-bungeecord:4.1.1")
     // shadow("net.kyori:adventure-platform-bukkit:4.0.0")
 
-    shadow("club.minnced:discord-webhooks:0.7.2")
+    shadow("club.minnced:discord-webhooks:0.8.2")
 }
 
 val makeShadow = tasks.register<ShadowJar>("makeShadow") {

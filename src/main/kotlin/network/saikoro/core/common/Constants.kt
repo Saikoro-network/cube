@@ -32,11 +32,15 @@ class Constants {
     }
 
     object Permissions {
-        const val BypassGeoIP = "network.saikoro.core.bypass_geoip"
-        const val SendAlert = "network.saikoro.core.send_alert"
-        const val MOTDReload = "network.saikoro.core.motd_reload"
-        const val SendBugReport = "network.saikoro.core.send_bug_report"
-        const val SendReport = "network.saikoro.core.send_report"
-        const val BaseAnnoyancePermission = "network.saikoro.core.annoyances"
+        private const val RootPermission = "network.saikoro.core"
+
+        const val BypassGeoIP = "$RootPermission.bypass_geoip"
+        const val SendAlert = "$RootPermission.send_alert"
+        const val MOTDReload = "$RootPermission.motd_reload"
+        const val SendBugReport = "$RootPermission.send_bug_report"
+        const val SendReport = "$RootPermission.send_report"
+        const val BaseAnnoyancePermission = "$RootPermission.annoyances"
+        const val NotifyBugs = "$RootPermission.notify_bugs"
+        const val NotifyReports = "$RootPermission.notify_reports"
     }
 }

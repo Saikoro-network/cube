@@ -62,7 +62,7 @@ class ReportBugCommand(plugin: CorePlugin) :
                     .setAuthor(
                         WebhookEmbed.EmbedAuthor(
                             sender.name,
-                            "", // TODO: render player skin
+                            "https://visage.surgeplay.com/bust/512/${sender.uniqueId}", // TODO: Replace with our skin service whenever that's implemented
                             null
                         )
                     )
@@ -74,7 +74,7 @@ class ReportBugCommand(plugin: CorePlugin) :
             ),
             true
         ).thenAcceptAsync {
-            plugin.adventure.permission("network.saikoro.core.notify_bugs")
+            plugin.adventure.permission(Constants.Permissions.NotifyBugs)
                 .sendMessage(
                     ADVENTURE_REPORTS_PREFIX
                         .append(Component.text("Nové nahlášení bugu od hráče ", NamedTextColor.GOLD))
@@ -102,7 +102,7 @@ class ReportBugCommand(plugin: CorePlugin) :
                             )
                                 .append(
                                     Component.text("Discordu", TextColor.color(0x7289da))
-                                        .clickEvent(ClickEvent.openUrl("")) // TOOD: Disscord
+                                        .clickEvent(ClickEvent.openUrl("https://link.saikoro.eu/discord"))
                                 )
                                 .append(Component.text("."))
                         )
