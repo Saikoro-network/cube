@@ -65,8 +65,8 @@ class CorePlugin : Plugin(), Listener {
     internal lateinit var disconnectGeoipUnknownPrecompiled: Component
     internal lateinit var disconnectGeoipBlacklistedPrecompiled: Component
 
-    internal lateinit var discordBugHookClient: WebhookClient
-    internal lateinit var discordReportHookClient: WebhookClient
+    internal var discordBugHookClient: WebhookClient? = null
+    internal var discordReportHookClient: WebhookClient? = null
 
     internal lateinit var lpApi: LuckPerms
 
@@ -111,11 +111,20 @@ class CorePlugin : Plugin(), Listener {
 
         reloadMOTDFiles()*/
 
-        discordBugHookClient = WebhookClientBuilder(config.getString("reports.bug_webhook_url"))
-            .build()
+        val bugReportHookURL = config.getString("reports.bug_webhook_url")
 
-        discordReportHookClient = WebhookClientBuilder(config.getString("reports.webhook_url"))
-            .build()
+        if (bugReportHookURL != null) {
+            discordBugHookClient = WebhookClientBuilder(bugReportHookURL)
+                .build()
+        }
+
+        val reportHookURL = config.getString("reports.webhook_url")
+
+        if (reportHookURL != null) {
+            discordReportHookClient = WebhookClientBuilder(reportHookURL)
+                .build()
+        }
+
 
         /*db = DatabaseGetter.getInstance(
             config.getInt("db.max_pool_size", 10),

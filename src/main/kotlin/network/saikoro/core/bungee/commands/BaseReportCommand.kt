@@ -37,7 +37,8 @@ abstract class BaseReportCommand(
             plugin.discordBugHookClient
         } else {
             plugin.discordReportHookClient
-        }.send(embeds)
+        }?.send(embeds)
+            ?: CompletableFuture.failedFuture(Exception("Cannot send message as webhook client hasn't been set up"))
     }
 
     protected fun getDiscordMessageLinkURL(it: ReadonlyMessage): String {
