@@ -27,6 +27,7 @@ import net.kyori.adventure.text.format.TextColor
 import net.md_5.bungee.api.CommandSender
 import net.md_5.bungee.api.connection.ProxiedPlayer
 import network.saikoro.core.bungee.CorePlugin
+import network.saikoro.core.bungee.util.getUserId
 import network.saikoro.core.common.Constants
 import java.time.ZonedDateTime
 
@@ -62,7 +63,7 @@ class ReportBugCommand(plugin: CorePlugin) :
                     .setAuthor(
                         WebhookEmbed.EmbedAuthor(
                             sender.name,
-                            "https://visage.surgeplay.com/bust/512/${sender.uniqueId}", // TODO: Replace with our skin service whenever that's implemented
+                            "https://visage.surgeplay.com/bust/512/${sender.getUserId()}", // TODO: Replace with our skin service whenever that's implemented
                             null
                         )
                     )

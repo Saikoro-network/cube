@@ -24,3 +24,5 @@ main: network.saikoro.core.bungee.CorePlugin
 author: TTtie
 depends:
   - LuckPerms
+softDepends:
+  - JPremium

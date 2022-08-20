@@ -3,3 +3,5 @@
 build/
 license-preambles.txt
 
+# External libraries
+libs/
