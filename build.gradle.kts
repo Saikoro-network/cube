@@ -48,7 +48,9 @@ dependencies {
     compileOnly("net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT")
     compileOnly("net.luckperms:api:5.4")
 
-    compileOnly(files("libs/"))
+    compileOnly(fileTree("libs/") {
+        include("*jar")
+    })
 
     shadow(kotlin("stdlib-jdk8"))
     shadow(kotlin("reflect"))
