@@ -48,11 +48,13 @@ dependencies {
     compileOnly("net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT")
     compileOnly("net.luckperms:api:5.4")
 
+    compileOnly(files("libs/"))
+
     shadow(kotlin("stdlib-jdk8"))
     shadow(kotlin("reflect"))
-    shadow("com.zaxxer:HikariCP:5.0.1")
-    shadow("org.ktorm:ktorm-core:3.5.0")
-    shadow("com.maxmind.geoip2:geoip2:3.0.1")
+    /*shadow*/ compileOnly("com.zaxxer:HikariCP:5.0.1")
+    /*shadow*/ compileOnly("org.ktorm:ktorm-core:3.5.0")
+    /*shadow*/ compileOnly("com.maxmind.geoip2:geoip2:3.0.1")
 
     shadow("net.kyori:adventure-api:4.11.0")
     shadow("net.kyori:adventure-platform-bungeecord:4.1.1")
