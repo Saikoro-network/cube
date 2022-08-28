@@ -21,7 +21,7 @@ db:
   max_pool_size: 10
   host: TODO
   port: 3306
-  name: db
+  default_name: db
   username: TODO
   password: TODO123
 
@@ -42,3 +42,12 @@ geoip:
     &c-------------
     &cTvoje země nebyla rozpoznána, a tudíž ti byl odepřen přístup k serveru.
     &cProsím, kontaktuj info@saikoro.eu pro více informací.
+
+
+reports:
+  bug_webhook_url: "https://discord.com/api/webhooks/1234567890123456789/..."
+  webhook_url: "https://discord.com/api/webhooks/1234567890123456789/..."
+
+annoyances:
+  automessage:
+  # ...

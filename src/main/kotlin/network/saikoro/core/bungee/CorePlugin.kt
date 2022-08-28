@@ -39,7 +39,10 @@ import network.saikoro.core.bungee.annoyances.AnnoyanceManager
 import network.saikoro.core.bungee.commands.*
 import network.saikoro.core.bungee.listener.CoreListener
 import network.saikoro.core.common.Constants
+import network.saikoro.core.common.db.DatabaseGetter
 import org.ktorm.database.Database
+import org.ktorm.logging.ConsoleLogger
+import org.ktorm.logging.LogLevel
 import java.io.File
 import java.nio.file.Files
 
@@ -47,7 +50,7 @@ import java.nio.file.Files
 class CorePlugin : Plugin(), Listener {
     private val quartersOfHour = arrayOf(0, 15, 30, 45)
 
-    private lateinit var db: Database
+    internal lateinit var db: Database
     internal lateinit var config: Configuration
 
     private var _adv: BungeeAudiences? = null
@@ -126,16 +129,17 @@ class CorePlugin : Plugin(), Listener {
         }
 
 
-        /*db = DatabaseGetter.getInstance(
+        db = DatabaseGetter.getInstance(
             config.getInt("db.max_pool_size", 10),
             config.getString("db.host"),
             config.getString("db.port") ?: config.getInt("db.port", 3306).toString(),
-            config.getString("db.name"),
+            config.getString("db.default_name"),
             config.getString("db.username"),
-            config.getString("db.password")
+            config.getString("db.password"),
+            logger = ConsoleLogger(threshold = LogLevel.TRACE)
         )
 
-        proxy.scheduler.schedule(this, {
+        /*proxy.scheduler.schedule(this, {
             val cal = Calendar.getInstance()
 
             val min = cal.get(Calendar.MINUTE)

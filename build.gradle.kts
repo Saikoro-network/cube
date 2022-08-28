@@ -54,15 +54,16 @@ dependencies {
 
     shadow(kotlin("stdlib-jdk8"))
     shadow(kotlin("reflect"))
-    /*shadow*/ compileOnly("com.zaxxer:HikariCP:5.0.1")
-    /*shadow*/ compileOnly("org.ktorm:ktorm-core:3.5.0")
+    shadow("com.zaxxer:HikariCP:5.0.1")
+    shadow("org.ktorm:ktorm-core:3.5.0")
     /*shadow*/ compileOnly("com.maxmind.geoip2:geoip2:3.0.1")
 
     shadow("net.kyori:adventure-api:4.11.0")
-    shadow("net.kyori:adventure-platform-bungeecord:4.1.1")
+    shadow("net.kyori:adventure-platform-bungeecord:4.1.2")
     // shadow("net.kyori:adventure-platform-bukkit:4.0.0")
 
     shadow("club.minnced:discord-webhooks:0.8.2")
+    shadow("org.apache.commons:commons-text:1.9")
 }
 
 val makeShadow = tasks.register<ShadowJar>("makeShadow") {

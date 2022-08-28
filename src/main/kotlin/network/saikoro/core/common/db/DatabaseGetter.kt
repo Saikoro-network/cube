@@ -39,6 +39,8 @@ package network.saikoro.core.common.db
 
 import com.zaxxer.hikari.HikariDataSource
 import org.ktorm.database.Database
+import org.ktorm.logging.Logger
+import org.ktorm.logging.detectLoggerImplementation
 
 object DatabaseGetter {
     private var dbInst: Database? = null
@@ -49,7 +51,8 @@ object DatabaseGetter {
         port: String,
         dbName: String,
         _username: String,
-        _password: String
+        _password: String,
+        logger: Logger?
     ): Database {
         if (dbInst == null) {
             dbInst = Database.connect(
@@ -60,11 +63,15 @@ object DatabaseGetter {
                         jdbcUrl = "jdbc:mysql://$server:$port/$dbName"
                         username = _username
                         password = _password
-                    }
+                    },
+
+                logger = logger ?: detectLoggerImplementation()
             )
-            return dbInst!!
+            return dbInst as Database
         }
 
-        return dbInst!!
+        return dbInst as Database
     }
+
+
 }
