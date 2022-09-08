@@ -1,0 +1,12 @@
+[
+  {
+    "name": "JPremiumAPI",
+    "url": "https://raw.githubusercontent.com/Jakubson/JPremiumCleared/656f3ae37c0ee71ea671b5b07dbbe1dee5337814/assets/JPremiumAPI.jar",
+    "license": "https://raw.githubusercontent.com/Jakubson/JPremiumCleared/656f3ae37c0ee71ea671b5b07dbbe1dee5337814/assets/terms.txt"
+  },
+  {
+    "name": "test",
+    "url": "https://Test.tttie.cz",
+    "license": ""
+  }
+]
