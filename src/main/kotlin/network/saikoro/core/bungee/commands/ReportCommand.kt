@@ -45,7 +45,6 @@ import java.time.ZonedDateTime
 
 class ReportCommand(plugin: CorePlugin) : BaseReportCommand(plugin, "report", Constants.Permissions.SendReport) {
 
-    // private val dateFormatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy")
     override fun execute(sender: CommandSender, args: Array<out String>) {
         if (sender !is ProxiedPlayer) {
             plugin.adventure.sender(sender).sendMessage(
@@ -71,14 +70,14 @@ class ReportCommand(plugin: CorePlugin) : BaseReportCommand(plugin, "report", Co
                     .append(Component.text("Tento hráč se nenachází na serveru!", NamedTextColor.RED))
             )
 
-        /*if (reportPlayer == sender) {
+        if (reportPlayer == sender) {
             plugin.adventure.sender(sender)
                 .sendMessage(
                     ADVENTURE_REPORTS_PREFIX
                         .append(Component.text("Proč bys nahlašoval sám sebe? ;(", NamedTextColor.RED))
                 )
             return
-        }*/
+        }
 
         val dbUser = plugin.db.users.find {
             // jpremium uuids are dash-less
@@ -132,7 +131,9 @@ class ReportCommand(plugin: CorePlugin) : BaseReportCommand(plugin, "report", Co
             ticket = reportTicket
             author = dbUser
             params = "{\"admin\": false}"
-            message = "<b>Důvod: </b> <code>${escapeHtml4(reportReason)}</code>"
+            message = "<p>Dobrý den,<br> chtěl bych nahlásit hráče <strong>${reportPlayer.name}</strong> na serveru" +
+                    "<strong>${reportPlayer.server.info.name}</strong>.</p>" +
+                    "<p><strong>Důvod: </strong> <code>${escapeHtml4(reportReason)}</code></p>"
             timestamp = creationTime.toEpochSecond().toString()
         }
 
