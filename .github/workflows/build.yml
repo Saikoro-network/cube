@@ -13,5 +13,6 @@ jobs:
           java-version: 11
           cache: gradle
       - run: |
+          ./ci/download_deps.sh
           ./gradlew build --no-daemon
         name: "Build using Gradle"
